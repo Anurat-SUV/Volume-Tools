@@ -341,12 +341,12 @@ function parseAuto(lines) {
 }
 
 function calc(r) {
-  const wCm = +(r.w * 2.54).toFixed(1);
-  const lCm = +(r.l * 2.54).toFixed(1);
-  const hCm = +(r.h * 2.54).toFixed(1);
+  const wCm = Math.round(r.w * 2.54 * 10) / 10;
+  const lCm = Math.round(r.l * 2.54 * 10) / 10;
+  const hCm = Math.round(r.h * 2.54 * 10) / 10;
   const volCm3 = wCm * lCm * hCm;
-  const volM3  = +(volCm3 / 1e6).toFixed(4);
-  const vw     = +(volCm3 / 6000).toFixed(1);
+  const volM3  = Math.round(volCm3 / 1e6 * 10000) / 10000;
+  const vw     = Math.round(volCm3 / 6000 * 10) / 10;
   const cw     = r.gw !== null ? Math.max(r.gw, vw) : vw;
   return { ...r, wCm, lCm, hCm, volM3, vw, cw };
 }
